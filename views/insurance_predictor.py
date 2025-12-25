@@ -2,10 +2,20 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+from pathlib import Path
+
+#  REQUIRED IMPORTS FOR JOBLIB MODEL LOADING (VERY IMPORTANT)
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder
+from sklearn.pipeline import Pipeline
+from sklearn.ensemble import GradientBoostingRegressor
+
+#  Correct model path (works locally + Streamlit Cloud)
+MODEL_PATH = Path(__file__).parent.parent / "model" / "model.joblib"
 
 @st.cache_resource
 def load_model():
-    return joblib.load('model/model.joblib')
+    return joblib.load(MODEL_PATH)
 
 def show():
     # Page background and styling
