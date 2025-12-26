@@ -1,6 +1,10 @@
 import streamlit as st
 
 def show():
+    # Initialize session state for navigation
+    if "navigate_to_predictor" not in st.session_state:
+        st.session_state.navigate_to_predictor = False
+    
     # Page background and custom button styling
     st.markdown("""
     <style>

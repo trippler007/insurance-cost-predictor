@@ -18,6 +18,12 @@ def load_model():
     return joblib.load(MODEL_PATH)
 
 def show():
+    # Initialize session state
+    if "predicted" not in st.session_state:
+        st.session_state.predicted = False
+    if "prediction_result" not in st.session_state:
+        st.session_state.prediction_result = None
+    
     # Page background and styling
     st.markdown("""
     <style>
@@ -186,9 +192,7 @@ def show():
         # Submit Button
         submitted = st.form_submit_button("Predict Insurance Cost")
         
-        st.markdown("</div>", unsafe_allow_html=True)
-        
-        # Prediction Output
+        # Handle form submission
         if submitted:
             height_m = height / 100
             bmi = weight / (height_m ** 2)
@@ -203,40 +207,47 @@ def show():
             })
             
             prediction = model.predict(input_data)[0]
-            
-            # Output Card
-            st.markdown("""
-            <div style="
-                background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-                padding: 2rem;
-                border-radius: 12px;
-                margin-bottom: 1rem;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-                border: 1px solid #BFDBFE;
-                text-align: center;
-            ">
-                <p style="
-                    color: #6B7280;
-                    font-size: 0.9rem;
-                    margin: 0 0 0.5rem;
-                    font-weight: 500;
-                ">Estimated Insurance Cost</p>
-                <h2 style="
-                    color: #111827;
-                    font-size: 2.5rem;
-                    font-weight: 700;
-                    margin: 0;
-                ">₹ {:,.2f}</h2>
-            </div>
-            """.format(prediction), unsafe_allow_html=True)
-            
-            # Disclaimer
-            st.markdown("""
+            st.session_state.predicted = True
+            st.session_state.prediction_result = prediction
+        
+        st.markdown("</div>", unsafe_allow_html=True)
+    
+    # Prediction Output (based on session state)
+    if st.session_state.predicted and st.session_state.prediction_result is not None:
+        
+        # Output Card
+        st.markdown("""
+        <div style="
+            background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #BFDBFE;
+            text-align: center;
+        ">
             <p style="
-                color: #9CA3AF;
-                font-size: 0.85rem;
-                text-align: center;
-                font-style: italic;
+                color: #6B7280;
+                font-size: 0.9rem;
+                margin: 0 0 0.5rem;
+                font-weight: 500;
+            ">Estimated Insurance Cost</p>
+            <h2 style="
+                color: #111827;
+                font-size: 2.5rem;
+                font-weight: 700;
                 margin: 0;
-            ">This estimate is based on historical data and may vary depending on individual factors.</p>
-            """, unsafe_allow_html=True)
+            ">₹ {:,.2f}</h2>
+        </div>
+        """.format(st.session_state.prediction_result), unsafe_allow_html=True)
+        
+        # Disclaimer
+        st.markdown("""
+        <p style="
+            color: #9CA3AF;
+            font-size: 0.85rem;
+            text-align: center;
+            font-style: italic;
+            margin: 0;
+        ">This estimate is based on historical data and may vary depending on individual factors.</p>
+        """, unsafe_allow_html=True)

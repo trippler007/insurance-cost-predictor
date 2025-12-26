@@ -144,13 +144,25 @@ pages = {
     "Insurance Predictor": insurance_predictor
 }
 
+# Initialize navigation state
+if "current_page" not in st.session_state:
+    st.session_state.current_page = "Home"
+
 # Handle page redirect from buttons
 if "page_redirect" in st.session_state:
-    selected_page = st.session_state.page_redirect
-    # Update sidebar to reflect the selection
-    st.sidebar.radio("", list(pages.keys()), index=list(pages.keys()).index(selected_page))
+    st.session_state.current_page = st.session_state.page_redirect
     del st.session_state.page_redirect
-else:
-    selected_page = st.sidebar.radio("", list(pages.keys()))
 
-pages[selected_page].show()
+# Stable sidebar navigation
+def on_page_change():
+    st.session_state.current_page = st.session_state.sidebar_page
+
+st.sidebar.radio(
+    "",
+    list(pages.keys()),
+    key="sidebar_page",
+    index=list(pages.keys()).index(st.session_state.current_page),
+    on_change=on_page_change
+)
+
+pages[st.session_state.current_page].show()
