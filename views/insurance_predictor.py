@@ -24,116 +24,23 @@ def show():
     if "prediction_result" not in st.session_state:
         st.session_state.prediction_result = None
     
-    # Page background and styling
+    # TASK 6: Consistent page header
     st.markdown("""
-    <style>
-    .main .block-container {
-        background: #F8FAFC;
-        padding: 1.5rem 2rem;
-        max-width: 800px;
-    }
-    
-    /* CTA Button Styling - STRICTLY LIMITED */
-    .stButton > button,
-    div[data-testid="stFormSubmitButton"] > button {
-        background: linear-gradient(135deg, #3B82F6, #2563EB) !important;
-        color: #FFFFFF !important;
-        border: none !important;
-        border-radius: 12px !important;
-        padding: 1rem 3rem !important;
-        font-size: 1.2rem !important;
-        font-weight: 900 !important;
-        font-family: 'Inter', sans-serif !important;
-        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
-        transition: all 0.3s ease !important;
-        height: 4rem !important;
-        min-height: 4rem !important;
-        width: 100% !important;
-        white-space: nowrap !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.5px !important;
-    }
-    
-    .stButton > button:hover,
-    div[data-testid="stFormSubmitButton"] > button:hover {
-        background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5) !important;
-        transform: translateY(-2px) !important;
-    }
-    
-    .stButton > button:active,
-    div[data-testid="stFormSubmitButton"] > button:active {
-        transform: translateY(0px) !important;
-    }
-    
-    /* SAFE Input Enhancement - NO RESET */
-    div[data-baseweb="input"] input {
-        background: #FFFFFF !important;
-        border: 1px solid #D1D5DB !important;
-        border-radius: 8px !important;
-        color: #1F2937 !important;
-        font-family: 'Inter', sans-serif !important;
-    }
-    
-    div[data-baseweb="input"] input:focus {
-        border-color: #3B82F6 !important;
-        box-shadow: 0 0 0 1px #3B82F6 !important;
-        color: #1F2937 !important;
-    }
-    
-    div[data-baseweb="select"] > div {
-        background: #FFFFFF !important;
-        border: 1px solid #D1D5DB !important;
-        border-radius: 8px !important;
-        color: #1F2937 !important;
-        font-family: 'Inter', sans-serif !important;
-    }
-    
-    div[data-baseweb="select"] > div:focus-within {
-        border-color: #3B82F6 !important;
-        box-shadow: 0 0 0 1px #3B82F6 !important;
-    }
-    
-    /* Fix for number input visibility */
-    .stNumberInput > div > div > input {
-        background: #FFFFFF !important;
-        color: #1F2937 !important;
-        border: 1px solid #D1D5DB !important;
-        border-radius: 8px !important;
-    }
-    
-    /* Fix for selectbox visibility */
-    .stSelectbox > div > div {
-        background: #FFFFFF !important;
-        color: #1F2937 !important;
-        border: 1px solid #D1D5DB !important;
-        border-radius: 8px !important;
-    }
-    
-    /* Fix for selectbox options */
-    .stSelectbox > div > div > div {
-        color: #1F2937 !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    # Page Header
-    st.markdown("""
-    <div style="text-align: center; margin-bottom: 2rem;">
+    <div style="text-align: center; margin-bottom: 1.25rem;">
         <h1 style="
             font-family: 'Inter', sans-serif;
-            font-size: 2.2rem;
+            font-size: 1.75rem;
             color: #111827;
             font-weight: 700;
             margin: 0 0 0.5rem;
         ">Insurance Cost Predictor</h1>
         <p style="
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9375rem;
             color: #6B7280;
             margin: 0;
             font-weight: 400;
-        ">Enter your basic details below to get an estimated health insurance cost instantly.</p>
+        ">Enter your details below to get an estimated health insurance cost.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -144,23 +51,23 @@ def show():
         st.markdown("""
         <div style="
             background: #FFFFFF;
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 1.75rem;
+            border-radius: 10px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             border: 1px solid #E5E7EB;
         ">
             <h3 style="
                 color: #111827;
                 margin: 0 0 0.5rem;
                 font-weight: 600;
-                font-size: 1.3rem;
-            ">Your Details</h3>
+                font-size: 1.2rem;
+            ">Personal Information</h3>
             <p style="
                 color: #6B7280;
-                margin: 0 0 1.5rem;
-                font-size: 0.9rem;
-            ">All fields are required to calculate an accurate estimate.</p>
+                margin: 0 0 1.25rem;
+                font-size: 0.875rem;
+            ">All fields are required for accurate cost estimation.</p>
         """, unsafe_allow_html=True)
         
         # Input Fields in 2-column grid
@@ -181,16 +88,24 @@ def show():
         if height > 0 and weight > 0:
             bmi = weight / ((height/100) ** 2)
             st.markdown(f"""
-            <p style="
-                color: #6B7280;
-                font-size: 0.9rem;
-                margin: 1rem 0 1.5rem;
-                font-weight: 500;
-            ">Calculated BMI: {bmi:.1f}</p>
+            <div style="
+                background: #F3F4F6;
+                padding: 0.75rem 1rem;
+                border-radius: 6px;
+                margin: 1rem 0 1.25rem;
+                border-left: 3px solid #6B7280;
+            ">
+                <p style="
+                    color: #374151;
+                    font-size: 0.875rem;
+                    margin: 0;
+                    font-weight: 500;
+                ">Calculated BMI: <strong>{bmi:.1f}</strong></p>
+            </div>
             """, unsafe_allow_html=True)
         
         # Submit Button
-        submitted = st.form_submit_button("Predict Insurance Cost")
+        submitted = st.form_submit_button("Calculate insurance cost")
         
         # Handle form submission
         if submitted:
@@ -219,35 +134,48 @@ def show():
         st.markdown("""
         <div style="
             background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 1.75rem;
+            border-radius: 10px;
             margin-bottom: 1rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             border: 1px solid #BFDBFE;
             text-align: center;
         ">
             <p style="
                 color: #6B7280;
-                font-size: 0.9rem;
+                font-size: 0.875rem;
                 margin: 0 0 0.5rem;
                 font-weight: 500;
-            ">Estimated Insurance Cost</p>
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            ">Estimated Annual Insurance Cost</p>
             <h2 style="
                 color: #111827;
-                font-size: 2.5rem;
+                font-size: 2.25rem;
                 font-weight: 700;
                 margin: 0;
-            ">₹ {:,.2f}</h2>
+            ">₹ {:,.0f}</h2>
         </div>
         """.format(st.session_state.prediction_result), unsafe_allow_html=True)
         
         # Disclaimer
         st.markdown("""
-        <p style="
-            color: #9CA3AF;
-            font-size: 0.85rem;
-            text-align: center;
-            font-style: italic;
-            margin: 0;
-        ">This estimate is based on historical data and may vary depending on individual factors.</p>
+        <div style="
+            background: #FFFBEB;
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #F59E0B;
+            margin-bottom: 1rem;
+        ">
+            <p style="
+                color: #92400E;
+                font-size: 0.8rem;
+                margin: 0;
+                font-style: italic;
+                line-height: 1.4;
+            ">
+                <strong>Disclaimer:</strong> This estimate is based on historical data and machine learning predictions. 
+                Actual insurance costs may vary based on provider policies, medical history, and other factors.
+            </p>
+        </div>
         """, unsafe_allow_html=True)

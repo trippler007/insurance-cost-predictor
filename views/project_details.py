@@ -1,24 +1,14 @@
 import streamlit as st
 
 def show():
-    # Add page background
-    st.markdown("""
-    <style>
-    .main .block-container {
-        background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
-        min-height: 100vh;
-        padding-top: 2rem;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
+    # TASK 6: Consistent spacing across pages
     st.markdown("""
     <h1 style="
-        font-size: 2rem;
-        color: #0F172A;
+        font-size: 1.75rem;
+        color: #111827;
         font-weight: 700;
         text-align: center;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.25rem;
     ">Project Details</h1>
     """, unsafe_allow_html=True)
     

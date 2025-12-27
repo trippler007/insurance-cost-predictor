@@ -5,121 +5,62 @@ def show():
     if "navigate_to_predictor" not in st.session_state:
         st.session_state.navigate_to_predictor = False
     
-    # Page background and custom button styling
+    # TASK 2: Hero Banner - Streamlit-native approach
+    st.image("assets/images/banner.png", use_container_width=True)
+    
+    # TASK 5: Reduced spacing - Subtitle below banner
     st.markdown("""
-    <style>
-    .main .block-container {
-        background: #F8FAFC;
-        padding: 1.2rem 2rem;
-        max-width: 1100px;
-    }
-    
-    /* Custom CTA Button Styling */
-    .stButton > button {
-        background: linear-gradient(135deg, #3B82F6, #2563EB) !important;
-        color: #FFFFFF !important;
-        border: none !important;
-        border-radius: 12px !important;
-        padding: 1rem 3rem !important;
-        font-size: 1.2rem !important;
-        font-weight: 900 !important;
-        font-family: 'Inter', sans-serif !important;
-        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
-        transition: all 0.3s ease !important;
-        height: 4rem !important;
-        min-height: 4rem !important;
-        width: 100% !important;
-        white-space: nowrap !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.5px !important;
-    }
-    
-    .stButton > button:hover {
-        background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5) !important;
-        transform: translateY(-2px) !important;
-        color: #FFFFFF !important;
-        font-weight: 900 !important;
-    }
-    
-    .stButton > button:active {
-        transform: translateY(0px) !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    # Hero Section
-    st.markdown("""
-    <div style="
-        background: #FFFFFF;
-        padding: 2.8rem 2rem;
-        border-radius: 12px;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        border: 1px solid #E5E7EB;
-        text-align: center;
-    ">
-        <h1 style="
-            font-family: 'Inter', sans-serif;
-            font-size: 2.4rem;
-            color: #111827;
-            margin: 0 0 0.8rem;
-            font-weight: 700;
-        ">
-            Healthcare Insurance Cost Prediction
-        </h1>
+    <div style="text-align: center; margin: 1rem 0 1.5rem;">
         <p style="
             font-family: 'Inter', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.125rem;
             color: #6B7280;
-            margin: 0 0 2rem;
-            font-weight: 400;
-        ">
-            Estimate your health insurance cost instantly using machine learning.
-        </p>
-    """, unsafe_allow_html=True)
-    
-    # CTA Button with center alignment
-    col1, col2, col3 = st.columns([1.5, 2, 1.5])
-    with col2:
-        if st.button("Get Insurance Estimate", key="hero_cta"):
-            st.session_state.page_redirect = "Insurance Predictor"
-            st.rerun()
-    
-    st.markdown("</div>", unsafe_allow_html=True)
-    
-    # Intro Section
-    st.markdown("""
-    <div style="
-        background: #FFFFFF;
-        padding: 1.8rem;
-        border-radius: 12px;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        border: 1px solid #E5E7EB;
-        margin-left: auto;
-        margin-right: auto;
-    ">
-        <p style="
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #374151;
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            text-align: center;
+            font-weight: 400;
+            line-height: 1.5;
         ">
-            This application helps users get an approximate health insurance cost based on basic personal, lifestyle, and physical details. The goal is to provide a quick, data-driven estimate in a simple and easy-to-use interface.
+            Get instant, accurate health insurance cost estimates using advanced machine learning technology.
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # How It Works Section
+    # CTA Button with center alignment
+    col1, col2, col3 = st.columns([2, 1.5, 2])
+    with col2:
+        if st.button("Get insurance estimate", key="hero_cta"):
+            st.session_state.page_redirect = "Insurance Predictor"
+            st.rerun()
+    
+    # Intro Section - Compact layout
+    st.markdown("""
+    <div style="
+        background: #FFFFFF;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1.25rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid #E5E7EB;
+    ">
+        <p style="
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: #4B5563;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+        ">
+            This application provides quick, data-driven health insurance cost estimates based on personal, lifestyle, and physical details. Our machine learning model analyzes your information to deliver accurate predictions in a simple, user-friendly interface.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # How It Works Section - Reduced spacing
     st.markdown("""
     <h2 style="
         font-family: 'Inter', sans-serif;
-        font-size: 1.8rem;
+        font-size: 1.375rem;
         color: #111827;
-        margin: 0 0 1.2rem;
+        margin: 0 0 0.75rem;
         font-weight: 600;
         text-align: center;
     ">How It Works</h2>
@@ -131,19 +72,20 @@ def show():
         st.markdown("""
         <div style="
             background: #FFFFFF;
-            padding: 1.6rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 1.375rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             border: 1px solid #E5E7EB;
             text-align: center;
-            height: 180px;
+            height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
         ">
-            <div style="font-size: 2rem; color: #0891B2; margin-bottom: 0.8rem;">📝</div>
-            <h4 style="color: #111827; margin: 0 0 0.6rem; font-weight: 600;">Enter Details</h4>
-            <p style="color: #6B7280; margin: 0; font-size: 0.9rem; line-height: 1.4;">
+            <div style="font-size: 1.625rem; color: #2563EB; margin-bottom: 0.625rem;">📝</div>
+            <h4 style="color: #111827; margin: 0 0 0.5rem; font-weight: 600; font-size: 0.9375rem;">Enter Details</h4>
+            <p style="color: #6B7280; margin: 0; font-size: 0.8125rem; line-height: 1.4; text-align: center;">
                 Provide age, region, smoking status, and basic physical information.
             </p>
         </div>
@@ -153,20 +95,21 @@ def show():
         st.markdown("""
         <div style="
             background: #FFFFFF;
-            padding: 1.6rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 1.375rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             border: 1px solid #E5E7EB;
             text-align: center;
-            height: 180px;
+            height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
         ">
-            <div style="font-size: 2rem; color: #0891B2; margin-bottom: 0.8rem;">⚙️</div>
-            <h4 style="color: #111827; margin: 0 0 0.6rem; font-weight: 600;">ML Processing</h4>
-            <p style="color: #6B7280; margin: 0; font-size: 0.9rem; line-height: 1.4;">
-                A trained machine learning regression model analyzes the input data.
+            <div style="font-size: 1.625rem; color: #2563EB; margin-bottom: 0.625rem;">⚙️</div>
+            <h4 style="color: #111827; margin: 0 0 0.5rem; font-weight: 600; font-size: 0.9375rem;">ML Processing</h4>
+            <p style="color: #6B7280; margin: 0; font-size: 0.8125rem; line-height: 1.4; text-align: center;">
+                Advanced machine learning model analyzes your data for accurate predictions.
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -175,31 +118,32 @@ def show():
         st.markdown("""
         <div style="
             background: #FFFFFF;
-            padding: 1.6rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 1.375rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             border: 1px solid #E5E7EB;
             text-align: center;
-            height: 180px;
+            height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
         ">
-            <div style="font-size: 2rem; color: #0891B2; margin-bottom: 0.8rem;">💰</div>
-            <h4 style="color: #111827; margin: 0 0 0.6rem; font-weight: 600;">Get Estimate</h4>
-            <p style="color: #6B7280; margin: 0; font-size: 0.9rem; line-height: 1.4;">
-                You receive an estimated insurance cost instantly.
+            <div style="font-size: 1.625rem; color: #2563EB; margin-bottom: 0.625rem;">💰</div>
+            <h4 style="color: #111827; margin: 0 0 0.5rem; font-weight: 600; font-size: 0.9375rem;">Get Estimate</h4>
+            <p style="color: #6B7280; margin: 0; font-size: 0.8125rem; line-height: 1.4; text-align: center;">
+                Receive your estimated insurance cost instantly with detailed breakdown.
             </p>
         </div>
         """, unsafe_allow_html=True)
     
-    # Key Features Section
+    # Key Features Section - Compact design
     st.markdown("""
     <h2 style="
         font-family: 'Inter', sans-serif;
-        font-size: 1.8rem;
+        font-size: 1.375rem;
         color: #111827;
-        margin: 2rem 0 1.2rem;
+        margin: 1.25rem 0 0.75rem;
         font-weight: 600;
         text-align: center;
     ">Key Features</h2>
@@ -210,38 +154,44 @@ def show():
     with col1:
         st.markdown("""
         <div style="
-            background: #F0F9FF;
-            padding: 1.4rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid #0891B2;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            background: #F8FAFC;
+            padding: 1.125rem 1.25rem;
+            border-radius: 6px;
+            margin-bottom: 0.875rem;
+            border-left: 2px solid #2563EB;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+            height: 60px;
+            display: flex;
+            align-items: center;
         ">
             <p style="
                 margin: 0;
-                font-size: 1rem;
+                font-size: 0.875rem;
                 font-weight: 500;
                 color: #111827;
-                line-height: 1.5;
+                line-height: 1.4;
             ">
-                Machine learning–based cost prediction
+                Machine learning-based cost prediction
             </p>
         </div>
         <div style="
-            background: #F0F9FF;
-            padding: 1.4rem;
-            border-radius: 8px;
-            border-left: 4px solid #0891B2;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            background: #F8FAFC;
+            padding: 1.125rem 1.25rem;
+            border-radius: 6px;
+            border-left: 2px solid #2563EB;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+            height: 60px;
+            display: flex;
+            align-items: center;
         ">
             <p style="
                 margin: 0;
-                font-size: 1rem;
+                font-size: 0.875rem;
                 font-weight: 500;
                 color: #111827;
-                line-height: 1.5;
+                line-height: 1.4;
             ">
-                Uses real-world healthcare insurance data
+                Real-world healthcare insurance data
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -249,58 +199,64 @@ def show():
     with col2:
         st.markdown("""
         <div style="
-            background: #F0F9FF;
-            padding: 1.4rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid #0891B2;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            background: #F8FAFC;
+            padding: 1.125rem 1.25rem;
+            border-radius: 6px;
+            margin-bottom: 0.875rem;
+            border-left: 2px solid #2563EB;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+            height: 60px;
+            display: flex;
+            align-items: center;
         ">
             <p style="
                 margin: 0;
-                font-size: 1rem;
+                font-size: 0.875rem;
                 font-weight: 500;
                 color: #111827;
-                line-height: 1.5;
+                line-height: 1.4;
             ">
                 Instant and interactive results
             </p>
         </div>
         <div style="
-            background: #F0F9FF;
-            padding: 1.4rem;
-            border-radius: 8px;
-            border-left: 4px solid #0891B2;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            background: #F8FAFC;
+            padding: 1.125rem 1.25rem;
+            border-radius: 6px;
+            border-left: 2px solid #2563EB;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+            height: 60px;
+            display: flex;
+            align-items: center;
         ">
             <p style="
                 margin: 0;
-                font-size: 1rem;
+                font-size: 0.875rem;
                 font-weight: 500;
                 color: #111827;
-                line-height: 1.5;
+                line-height: 1.4;
             ">
-                Simple, form-based user experience
+                Simple, form-based experience
             </p>
         </div>
         """, unsafe_allow_html=True)
     
-    # Bottom CTA Section
+    # Bottom CTA Section - Compact spacing
     st.markdown("""
     <div style="
         background: #FFFFFF;
-        padding: 2.2rem;
-        border-radius: 12px;
-        margin: 2rem 0 1rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        margin: 1rem 0 0.5rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         border: 1px solid #E5E7EB;
         text-align: center;
     ">
         <p style="
             font-family: 'Inter', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1rem;
             color: #111827;
-            margin: 0 0 1.5rem;
+            margin: 0 0 1rem;
             font-weight: 500;
         ">
             Ready to estimate your insurance cost?
@@ -308,9 +264,9 @@ def show():
     """, unsafe_allow_html=True)
     
     # Bottom CTA Button with center alignment
-    col1, col2, col3 = st.columns([1.5, 2, 1.5])
+    col1, col2, col3 = st.columns([2, 1.5, 2])
     with col2:
-        if st.button("Start Estimation", key="bottom_cta"):
+        if st.button("Start estimation", key="bottom_cta"):
             st.session_state.page_redirect = "Insurance Predictor"
             st.rerun()
     
